@@ -9,36 +9,48 @@ def true_function(x):
     return y
 
 #演習4 1.2
-np.random.seed(0)
-x = np.random.uniform(-1,1,20)
+def create_true_dataset(n=20, seed=0):
+    np.random.seed(seed)
 
-y = true_function(x)
+    x = np.random.uniform(-1, 1, n)
+    y = true_function(x)
 
-df = pd.DataFrame({
-    "観測点": x,
-    "真値": y
-})
+    df = pd.DataFrame({
+        "観測点": x,
+        "真値": y
+    })
+
+    return df
 
 #print(df)#確認
 
 #演習4 1.3
 #ノイズ生成
-noise = np.random.normal(0.0, np.sqrt(2.0), 20) / 2
+def add_noise(df, variance=2.0):
+    n = len(df)
 
-#観測値
-observed_y = y + noise
+    noise = np.random.normal(
+        0.0,
+        np.sqrt(variance),
+        n
+    ) / 2
 
-#新しい列追加
-df["観測値"] = observed_y
+    observed_y = df["真値"] + noise
+
+    df["観測値"] = observed_y
+
+    return df
 
 print(df)
 
 #演習4 1.4
 #TSV保存
-df.to_csv("ex1.3.tsv", sep="\t", index=False)
+def save_tsv(df, filename):
+    df.to_csv(filename, sep="\t", index=False)
 
 #演習4 1.5
-#DataFrame型で読み込む
-df2 = pd.read_csv("ex1.3.tsv", sep="\t")
+def load_tsv(filename):
+    df = pd.read_csv(filename, sep="\t")
+    return df
 #確認
 print(type(df2)) #出力➡️<class 'pandas.core.frame.DataFrame'>
