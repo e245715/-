@@ -33,26 +33,12 @@ df["観測値"] = observed_y
 
 print(df)
 
-#グラフ描画
-x_line = np.linspace(-1, 1, 1000)
-y_line = true_function(x_line)
+#演習4 1.4
+#TSV保存
+df.to_csv("ex1.3.tsv", sep="\t", index=False)
 
-# 描画
-plt.figure(figsize=(8, 5))
-
-# 真の関数
-plt.plot(x_line, y_line, label="true function")
-
-# 真値
-plt.scatter(x, y, color="red", label="true value")
-
-# 観測値（ノイズ付き）
-plt.scatter(x, observed_y, color="green", label="observed value")
-
-plt.legend()
-plt.grid()
-
-# 保存
-plt.savefig("ex1.3.png")
-
-plt.show()
+#演習4 1.5
+#DataFrame型で読み込む
+df2 = pd.read_csv("ex1.3.tsv", sep="\t")
+#確認
+print(type(df2)) #出力➡️<class 'pandas.core.frame.DataFrame'>

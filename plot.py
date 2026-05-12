@@ -43,3 +43,28 @@ plt.grid()
 plt.savefig("ex1.2.png")
 
 plt.show()
+
+#ex1.3.pngのグラフ描画
+#グラフ描画
+x_line = np.linspace(-1, 1, 1000)
+y_line = true_function(x_line)
+
+# 描画
+plt.figure(figsize=(8, 5))
+
+# 真の関数
+plt.plot(x_line, y_line, label="true function")
+
+# 真値
+plt.scatter(x, y, color="red", label="true value")
+
+# 観測値（ノイズ付き）
+plt.scatter(x, observed_y, color="green", label="observed value")
+
+plt.legend()
+plt.grid()
+
+# 保存
+plt.savefig("ex1.3.png")
+
+plt.show()
