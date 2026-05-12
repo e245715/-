@@ -1,17 +1,20 @@
 import numpy as np
 
 class LinearRegression:
-    X = None
+    x = None
     theta = None
-    Y = None
+    y = None
     
-    def fit(self,X,Y):
-        temp = np.linalg.inv(np.dot(X.T,X))
-        self.theta = np.dot(np.dot(temp,X.T),Y)
+    def fit(self,x,y):
+        pass
     
-    def predict(self,X):
-        return np.dot(X,self.theta)
+    def predict(self,x):
+        pass
     
-    def score(self,X,Y):
-        error = self.predict(X) - Y
-        return (error**2).sum()
+    def score(self,x,y):
+        pass
+    
+    def fit(self,x,y):
+        temp = np.linalg.inv(np.dot(x.T,x))
+        self.theta = np.dot(np.dot(temp,x.T),y)
+        
