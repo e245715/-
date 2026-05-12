@@ -21,18 +21,38 @@ df = pd.DataFrame({
 
 #print(df)#確認
 
-x_line = np.linspace(-1,1,1000)
+#演習4 1.3
+#ノイズ生成
+noise = np.random.normal(0.0, np.sqrt(2.0), 20) / 2
+
+#観測値
+observed_y = y + noise
+
+#新しい列追加
+df["観測値"] = observed_y
+
+print(df)
+
+#グラフ描画
+x_line = np.linspace(-1, 1, 1000)
 y_line = true_function(x_line)
 
-plt.figure(figsize=(8,5))
+# 描画
+plt.figure(figsize=(8, 5))
 
+# 真の関数
 plt.plot(x_line, y_line, label="true function")
 
-plt.scatter(x, y, color="red", label="samples")
+# 真値
+plt.scatter(x, y, color="red", label="true value")
+
+# 観測値（ノイズ付き）
+plt.scatter(x, observed_y, color="green", label="observed value")
 
 plt.legend()
 plt.grid()
 
-plt.savefig("ex1.2.png")
+# 保存
+plt.savefig("ex1.3.png")
 
 plt.show()
